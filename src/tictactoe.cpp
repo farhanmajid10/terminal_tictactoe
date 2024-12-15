@@ -24,7 +24,7 @@ int main(){
                 std::cin.ignore(1000,'\n');
                 std::cout << "Please enter Valid Input" << std::endl;
                 continue;
-            }else if(player_one_input > 8 || player_one_input < 0){
+            }else if(player_one_input > 9 || player_one_input <= 0){
                 std::cout << "Please enter valid Input" << std::endl;
                 board.printboard();
                 std::cout << std::endl;
@@ -39,7 +39,7 @@ int main(){
                 std::cin.ignore(1000,'\n');
                 std::cout << "Please enter Valid Input" << std::endl;
                 continue;
-            }else if(player_two_input > 8 || player_two_input < 0){
+            }else if(player_two_input > 9 || player_two_input <= 0){
                 std::cout << "Please enter valid Input" << std::endl;
                 board.printboard();
                 std::cout << std::endl;
@@ -60,6 +60,10 @@ int main(){
             break;
         }else if(board.get_game_won() == 2){
             std::cout << player_two_name << " won the game." << std::endl;
+            break;
+        }
+        if(board.get_draw() == 9){
+            std::cout << "Game ends in a draw!" << std::endl;
             break;
         }
     }

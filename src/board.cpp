@@ -12,7 +12,8 @@
         }
     }
 
-    void Board::place_item(int index){
+    void Board::place_item(int i){
+        int index = i - 1;
         if(game[index] == '#' && (turns % 2) == 0){
             game[index] = input1;
             turns++;
@@ -20,6 +21,7 @@
             game[index] = input2;
             turns++;
         }
+        draw++;
     }
 
     void Board::printboard(void){
@@ -116,4 +118,7 @@
     }
     int Board::get_turn(void){
         return turns % 2;
+    }
+    int Board::get_draw(void){
+        return draw;
     }

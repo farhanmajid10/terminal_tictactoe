@@ -8,6 +8,7 @@ private:
     char input2 = 'O';
     int turns = 0;
     int gamewon = 0;
+    int draw = 0;
 public:
     Board();
     void place_item(int index);
@@ -15,6 +16,7 @@ public:
     void check(void);
     int get_game_won(void);
     int get_turn(void);
+    int get_draw(void);
 };
 
 #endif 
