@@ -4,19 +4,19 @@
     Board::Board(){
         game = new char [9];
         //char[] game = new char[9]
-        input1 = 'X';
-        input2 = 'O';
-        turns = 1;
+        input1 = 'O';
+        input2 = 'X';
+        turns = 0;
         for(int i = 0; i < 9; i++){
             game[i] = '#';
         }
     }
 
     void Board::place_item(int index){
-        if(game[index] == '#' && (turns % 2) == 1){
+        if(game[index] == '#' && (turns % 2) == 0){
             game[index] = input1;
             turns++;
-        }else if(game[index] == '#' && (turns % 2) == 0){
+        }else if(game[index] == '#' && (turns % 2) == 1){
             game[index] = input2;
             turns++;
         }
@@ -33,96 +33,88 @@
         }
     }
     void Board::check(void){
-        int count = 0;
+        int count1 = 0;
+        int count2 = 0;
         //rows
         for(int i = 0; i < 3; i++){
-            count = 0;
+            count1 = 0;
+            count2 = 0;
             for(int j = 0; j < 3; j++){
                 if(game[3*i + j] == 'O'){
-                    count++;
+                    count1++;
                 }
-                if(count == 3){
-                    gamewon = 1;
-                }
-            }
-        }
-        for(int i = 0; i < 3; i++){
-            count = 0;
-            for(int j = 0; j < 3; j++){
                 if(game[3*i + j] == 'X'){
-                    count++;
+                    count2++;
                 }
-                if(count == 3){
+                if(count1 == 3){
                     gamewon = 1;
+                }
+                if(count2 == 3){
+                    gamewon = 2;
                 }
             }
         }
 
         //columns
+        count1 = 0;
+        count2 = 0;
         for(int i = 0; i < 3; i++){
-            count = 0;
+            count1 = 0;
+            count2 = 0;
             for(int j = 0; j < 3; j++){
                 if(game[i + 3*j] == 'X'){
-                    count++;
+                    count2++;
+                }else if(game[i + 3*j] == 'O'){
+                    count1++;
                 }
-                if(count == 3){
+                if(count1 == 3){
                     gamewon = 1;
+                }
+                if(count2 == 3){
+                    gamewon = 2;
                 }
             }
         }
-        for(int i = 0; i < 3; i++){
-            count = 0;
-            for(int j = 0; j < 3; j++){
-                if(game[i + 3*j] == 'O'){
-                    count++;
-                }
-                if(count == 3){
-                    gamewon = 1;
-                }
-            }
-        }
-        count = 0;
+        
+        count1 = 0;
+        count2 = 0;
         //diagonals
         for(int i = 0, j = 0; i < 3, j < 3; i++, j++){
             if(game[3*i+j] == 'O'){
-                count++;
+                count1++;
             }
-        }
-        if(count == 3){
-            gamewon = 1;
-            count = 0;
-        }
-        for(int i = 0, j = 0; i < 3, j < 3; i++, j++){
             if(game[3*i+j] == 'X'){
-                count++;
+                count2++;
             }
         }
-        if(count == 3){
+        if(count1 == 3){
             gamewon = 1;
+            count1 = 0;
         }
-        count = 0;
-        for(int i = 2, j = 2; j >= 0, i >= 0; j--,i--){
+        if(count2 == 3){
+            gamewon = 2;
+        }
+        count1 = 0;
+        count2 = 0;
+        for(int i = 0, j = 2; j >= 0, i < 3; j--,i++){
             if(game[3*i + j] == 'O'){
-                count++;
+                count1++;
+            }else if(game[3*i + j] == 'X'){
+                count2++;
             }
         }
-        if(count == 3){
+        if(count1 == 3){
             gamewon = 1;
         }
-        count = 0;
-        for(int i = 2, j = 2; j >= 0, i >= 0; j--,i--){
-            if(game[3*i + j] == 'X'){
-                count++;
-            }
+        if(count2 == 3){
+            gamewon = 2;
         }
-        if(count == 3){
-            gamewon = 1;
-        }
-        count = 0;
-
         return;
     }
 
     int Board::get_game_won(void){
         return gamewon;
+    }
+    int Board::get_turn(void){
+        return turns % 2;
     }

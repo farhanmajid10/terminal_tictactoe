@@ -14,6 +14,7 @@ public:
     void printboard(void);
     void check(void);
     int get_game_won(void);
+    int get_turn(void);
 };
 
 #endif 
