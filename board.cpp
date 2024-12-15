@@ -23,7 +23,6 @@
     }
 
     void Board::printboard(void){
-        std::cout<< std::endl;
         for(int i = 0; i < 9; i++){
             if(i % 3 == 0 && i != 0){
                 std::cout<< std::endl;
