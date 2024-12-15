@@ -1,0 +1,10 @@
+^C:\USERS\FARHA\ONEDRIVE\DESKTOP\TICTACTOE\BUILD\CMAKEFILES\40845CBBC4E85C8CC9434F29182C769B\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/farha/OneDrive/Desktop/tictactoe -BC:/Users/farha/OneDrive/Desktop/tictactoe/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/farha/OneDrive/Desktop/tictactoe/build/TicTacToe.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
